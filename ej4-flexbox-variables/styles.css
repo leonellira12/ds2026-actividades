@@ -1,0 +1,93 @@
+:root{
+    --color-principal: #7fade9; 
+    --color-secundario: #8ed0d4; 
+    --color-terciario: #87a7bd9c;
+    --border-radius: 12px;
+    --shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+
+}
+
+*{
+    box-sizing: border-box;
+    margin: 1rem 2rem 1rem 2rem;
+    padding: 0.5rem 3rem;
+}   
+
+.img{
+    margin: 0rem 36rem 0rem 36rem;
+    padding: 1rem 1rem;
+    min-width: auto;
+    min-height: auto;
+    background-color: var(--color-secundario);
+    border-radius: var(--border-radius);
+    box-shadow: var(--shadow);
+}
+
+.grilla{
+    background-color: var(--color-secundario);
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: end;
+    gap: 0.3rem;
+}
+
+.card{
+    background-color: var(--color-terciario);
+    flex: 1 1 200px;
+}
+
+.container{
+    background-color: #c4ecff;
+    border-radius: var(--border-radius);
+    box-shadow: var(--shadow);
+}
+
+.navbar{
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    background: var(--color-secundario);
+    font-size: large;
+    border-radius: var(--border-radius);
+    box-shadow: var(--shadow);
+}
+
+p{
+    border-radius: var(--border-radius);
+    box-shadow: var(--shadow);
+    font-size: large;
+}
+
+ul{
+    font-size: larger;
+}
+
+li{
+    background-color: var(--color-terciario);
+    font-style: larger;
+    border-radius: var(--border-radius);
+    box-shadow: var(--shadow);
+}
+
+
+h1 {
+    background-color:var(--color-principal);
+    font-style: italic;
+    border-radius: var(--border-radius);
+    box-shadow: var(--shadow);
+}
+
+h3{
+    background-color: #c4ecff;
+    border-radius: var(--border-radius);
+    box-shadow: var(--shadow);
+}
+    
+
+
+h2{
+    background-color: var(--color-secundario);
+    font-style: oblique;
+    border-radius: var(--border-radius);
+    box-shadow: var(--shadow);
+}
