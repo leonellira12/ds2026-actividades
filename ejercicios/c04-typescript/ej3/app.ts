@@ -4,6 +4,13 @@ const filtro_todos = document.getElementById('filtro_todos') as HTMLButtonElemen
 const nombre_input = document.getElementById('nombre_input') as HTMLInputElement
 const listado = document.getElementById('listado') as HTMLElement
 const stats = document.getElementById('stats') as HTMLElement
+const botonAgregar = document.getElementById('botonAgregar') as HTMLButtonElement
+const titulo = document.getElementById('titulo') as HTMLInputElement
+const autor = document.getElementById('autor') as HTMLInputElement
+const genero = document.getElementById('genero') as HTMLInputElement
+const precio = document.getElementById('precio') as HTMLInputElement
+const disponible = document.getElementById('disponible') as HTMLInputElement
+const errorForm = document.getElementById('errorForm') as HTMLInputElement
 
 
 interface Libro {
@@ -15,7 +22,7 @@ interface Libro {
     disponible: boolean
     genero?: string
     
-}
+};
 
 const libro_1: Libro = {
     
@@ -72,12 +79,56 @@ function renderizar(libros: Libro[]): void{
         
         const li = document.createElement('li');
         li.textContent = `${libros[i].titulo} escrito por ${libros[i].autor}`
-        listado.appendChild(li);
+       
+        const boton = document.createElement('button');
+        boton.innerText='Eliminar';
+        boton.addEventListener('click', (e:Event)=>{
+            eliminarLibro(libros[i].isbn)
+        })
+
+         listado.appendChild(li);
+         li.appendChild(boton);
+
     
     }
 
     stats.innerHTML = `La cantidad de libros es: ${libros.length} <br> Precio promedio: ${precioPromedio(libros)}`
 
+};
+
+function agregarLibro(libro : Libro): void{
+    catalogo.push(libro)
+    renderizar(catalogo)
+};
+
+function eliminarLibro(isbn : string): void{
+
+    catalogo = catalogo.filter(lb => lb.isbn != isbn);
+    renderizar(catalogo);
+};
+
+function validarFormulario(): Libro | null{
+    
+    let t = titulo.value.trim();
+    let a = autor.value.trim();
+    let p = Number(autor.value.trim());
+    let d = disponible.checked;
+    let g = genero.value.trim();
+    let i = "AUTO-" + Date.now();
+
+    if(t === "" || a === ""){
+        return null
+    };
+
+    if(p <= 0){
+        return null
+    };
+
+    const libro : Libro = {
+        titulo: t, autor: a, precio: p, disponible: d, genero: g, isbn: i
+    };
+
+    return libro;
 };
 
 filtro_nombre.addEventListener('click', (e:Event) => {
@@ -102,6 +153,26 @@ filtro_todos.addEventListener('click', (e:Event) => {
     renderizar(catalogo);
 });
 
+botonAgregar.addEventListener('click', (e: Event) =>{
+    
+    const resultado = validarFormulario();
+
+    if(resultado === null){
+        errorForm.textContent = "Error: complete todos los campos y asegurese de que precio sea mayor a 0";
+    };
+
+    if(resultado != null){
+        errorForm.textContent = "";
+        agregarLibro(resultado)
+    };
+
+});
+
 renderizar(catalogo);
 
 export{}
+
+
+
+
+
