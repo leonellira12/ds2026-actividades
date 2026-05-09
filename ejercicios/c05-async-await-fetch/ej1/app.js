@@ -15,7 +15,7 @@ async function obtenerUsuarios() {
 }
 async function iniciarApp() {
     let listaUsuarios = await obtenerUsuarios();
-    listaUsuarios.forEach(usuario => {
+    listaUsuarios.forEach( usuario => {
         console.log(`Nombre: ${usuario.name} Email: ${usuario.email}`);
     });
 }
